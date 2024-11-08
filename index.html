@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <title>Store</title>
     <style>
         /* Global Styles */
@@ -22,25 +23,37 @@
         header {
             background-color: #4904ca;
             color: white;
-            padding: 15px 20px;
+            padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: space-between; /* Memisahkan item menjadi space-between */
+            align-items: center; /* Vertically centering items */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        /* Logo Style */
         h1 {
-            font-family: 'Roboto', sans-serif; /* Menggunakan font Google untuk logo */
+            font-family: 'Poppins', sans-serif;
             font-size: 2rem;
             margin: 0;
-            font-weight: bold;
+            font-weight: 500;
+            text-transform: uppercase;
             letter-spacing: 1px;
+            color: white;
+            padding: 10px;
+            border-radius: 50%; /* Membuat logo bulat */
+            background-color: #4904ca;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Search Logo */
+        /* Search Box */
         .search-box {
             display: flex;
             align-items: center;
+            position: relative;
             cursor: pointer;
         }
 
@@ -55,7 +68,7 @@
         }
 
         .search-icon {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: white;
             cursor: pointer;
         }
@@ -66,13 +79,14 @@
 
         /* Sort Dropdown */
         .sort-dropdown select {
-            padding: 12px;
+            padding: 10px;
             font-size: 1rem;
             border: 1px solid #ddd;
             border-radius: 8px;
+            background-color: #fff;
         }
 
-        /* New Contact, Email, About Links */
+        /* Links (Contact, Email, About Us) */
         .header-links {
             display: flex;
             align-items: center;
@@ -86,7 +100,7 @@
         }
 
         .header-links ul li {
-            margin-left: 20px;
+            margin-left: 15px; /* Mengurangi jarak antar link */
         }
 
         .header-links ul li a {
@@ -100,7 +114,15 @@
             color: #f0f0f0;
         }
 
-        /* Product Section */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: auto;
+        }
+
+        /* Produk Section */
         .section-title {
             font-size: 2rem;
             margin-bottom: 20px;
@@ -175,14 +197,6 @@
             background-color: #128C7E;
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: auto;
-        }
-
         /* Modal Styles */
         .modal {
             display: none;
@@ -222,11 +236,11 @@
 
     <!-- Header -->
     <header>
-        <h1>Store</h1> <!-- Logo with Google Font -->
+        <h1>Store</h1> <!-- Logo with Google Font (rounded) -->
 
-        <!-- Search Box with Logo -->
+        <!-- Search Box with Material Icon -->
         <div class="search-box" onclick="toggleSearch()">
-            <span class="search-icon">&#128269;</span>
+            <span class="material-symbols-outlined search-icon">search</span>
             <input type="text" id="searchInput" placeholder="Search for products...">
         </div>
 
@@ -272,70 +286,73 @@
     <script>
         // Product Data
         const products = [
-            { "name": "ACER ASPIRE LITE N100", "description": "Laptop with basic features.", "price": 3500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
-            { "name": "LENOVO IDEAPAD SLIM 3i", "description": "Slim and lightweight laptop.", "price": 5500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
-            { "name": "ADVAN SOULMATE DC", "description": "Laptop with 4GB RAM and 128GB SSD.", "price": 3000000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
-            { "name": "AXIOO HYPE 10", "description": "Affordable and reliable laptop.", "price": 2500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
-            { "name": "AXIOO HYPE 1", "description": "Compact laptop with good performance.", "price": 2800000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" }
+            { "name": "ACER ASPIRE LITE N100", "description": "Affordable laptop with great specs.", "price": 3500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
+            { "name": "LENOVO IDEAPAD SLIM 3i", "description": "Affordable and slim laptop.", "price": 4000000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
+            { "name": "SAMSUNG GALAXY A52", "description": "Smartphone with great performance.", "price": 4500000, "image": "https://via.placeholder.com/300x200", "category": "Smartphone" }
         ];
 
         // Display Products
-        const productList = document.getElementById('product-list');
-        function displayProducts(products) {
-            productList.innerHTML = '';
-            products.forEach(product => {
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('product-card');
-                productDiv.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <div class="price">Rp ${product.price.toLocaleString()}</div>
-                        <a href="https://wa.me/6282213305959?text=Apakah+masih+ada+${product.name}" class="btn-buy" target="_blank">Buy Now</a>
-                    </div>
-                `;
-                productDiv.onclick = function() {
-                    showProductDetail(product);
-                };
-                productList.appendChild(productDiv);
-            });
-        }
+        const productList = document.getElementById("product-list");
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("product-card");
+            productCard.innerHTML = `
+                <img src="${product.image}" class="product-image" alt="${product.name}">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p class="price">Rp ${product.price.toLocaleString()}</p>
+                    <a href="#" class="btn-buy" onclick="openModal('${product.name}', '${product.description}', '${product.price}')">Buy Now</a>
+                </div>
+            `;
+            productList.appendChild(productCard);
+        });
 
-        // Show Product Detail in Modal
-        function showProductDetail(product) {
-            document.getElementById('modalProductName').innerText = product.name;
-            document.getElementById('modalProductDescription').innerText = product.description;
-            document.getElementById('modalBuyLink').href = `https://wa.me/6282213305959?text=Apakah+masih+ada+${product.name}`;
-            document.getElementById('productModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('productModal').style.display = 'none';
-        }
-
-        // Search Functionality
+        // Toggle search input visibility
         function toggleSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.classList.toggle('active');
+            const searchInput = document.getElementById("searchInput");
+            searchInput.classList.toggle("active");
             searchInput.focus();
         }
 
-        // Sort Products
-        function sortProducts() {
-            const sortBy = document.getElementById('sortBy').value;
-            const sortedProducts = [...products].sort((a, b) => {
-                if (sortBy === 'name') {
-                    return a.name.localeCompare(b.name);
-                } else {
-                    return a.price - b.price;
-                }
-            });
-            displayProducts(sortedProducts);
+        // Open modal for product details
+        function openModal(name, description, price) {
+            const modal = document.getElementById("productModal");
+            document.getElementById("modalProductName").innerText = name;
+            document.getElementById("modalProductDescription").innerText = description;
+            document.getElementById("modalBuyLink").href = "#";  // Add your actual buying link here
+            modal.style.display = "flex";
         }
 
-        // Initialize
-        displayProducts(products);
+        // Close modal
+        function closeModal() {
+            document.getElementById("productModal").style.display = "none";
+        }
+
+        // Sort products
+        function sortProducts() {
+            const sortBy = document.getElementById("sortBy").value;
+            if (sortBy === "name") {
+                products.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === "price") {
+                products.sort((a, b) => a.price - b.price);
+            }
+            productList.innerHTML = "";
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+                productCard.innerHTML = `
+                    <img src="${product.image}" class="product-image" alt="${product.name}">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p class="price">Rp ${product.price.toLocaleString()}</p>
+                        <a href="#" class="btn-buy" onclick="openModal('${product.name}', '${product.description}', '${product.price}')">Buy Now</a>
+                    </div>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
     </script>
 
 </body>
