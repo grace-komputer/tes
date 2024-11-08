@@ -261,9 +261,9 @@
         <!-- Contact, Email, About Links with Material Icons -->
         <div class="header-links">
             <ul>
-                <li><a href="tel:+123456789"><span class="material-symbols-outlined">phone</span>Contact</a></li>
-                <li><a href="mailto:info@store.com"><span class="material-symbols-outlined">mail</span>Email</a></li>
-                <li><a href="#about"><span class="material-symbols-outlined">inbox</span>About Us</a></li>
+                <li><a href="tel:+123456789">Contact</a></li>
+                <li><a href="mailto:info@store.com">Email</a></li>
+                <li><a href="#about">About Us</a></li>
             </ul>
         </div>
     </header>
@@ -292,11 +292,64 @@
     <script>
         // Product Data
         const products = [
-            { "name": "ACER ASPIRE LITE N100", "description": "Affordable laptop with great specs.", "price": 3500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
-            { "name": "LENOVO IDEAPAD SLIM 3i", "description": "Affordable and slim laptop.", "price": 4000000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
-            { "name": "SAMSUNG GALAXY A52", "description": "Smartphone with great performance.", "price": 4500000, "image": "https://via.placeholder.com/300x200", "category": "Smartphone" }
-        ];
+            {
+                "name": "ACER ASPIRE LITE N100",
+                "price": "",
+                "description": "SPESIFIKASI :\nProcessor : Intel® Processor N100 (4 Cores, 4 Threads up to 3.40 GHz)\nDisplay : 14 inci resolusi WUXGA 1920 x 1200 piksel, aspek rasio 16:10, 45% NTSC color gamut, Acer ComfyView, Acer Bluelight Shield\nRam : 8GB DDR5-4800MHz single-channel, upgradeable (Replaceable)\nStorage : 256GB SSD NVMe Gen3\nGraphics : Intel® UHD Graphics\nKeyboard : Chicklet Keyboard\nWireless : Wi-Fi 5 802.11ac, Bluetooth 5.0\nI/O Port : 3x USB 3.2 Gen 1, 1x USB Type-C (Full Function : DC-In, Charge, Data, Display)\nHDMI® port 2.0 with HDCP support, 1x Micro SD\nCamera : FHD Camera\nAudio : Two built-in stereo speakers\nBattery : 45.6 Wh 6000mAh\nOS : Windows 11 Home + OHS 2021".replace("\n", "<br>"),
+            },
+            {
+                "name": "LENOVO IDEAPAD SLIM 3i",
+                 "price": "",
+                "image": "https://files.catbox.moe/6qeyg9.jpg",
+                "description": "Lenovo IdeaPad Slim 3i :\nModel: 14IAH8 - 3JID (Abyss Blue – LIMITED) & 3KID (Arctic Grey)\nProsesor: Intel® Core™ i5-12450H\nRAM: 16 GB/512GB SSD\nLayar: 14\" FHD IPS, Backlit\nSistem Operasi: Windows 11 Home + OHS 2021"
 
+            },
+            {
+                "name": "ADVAN SOULMATE DC ",
+                 "price": "",
+                "image": "https://files.catbox.moe/jvp0y7.jpg",
+                "description": "LAPTOP ADVAND SOULMATE DC RAM 4/SSD 128"
+            },           
+            {
+                "name": "AXIOO HYPE 10",
+                 "price": "",
+                "image": "https://files.catbox.moe/ke15a9.jpg",
+                "description": "Laptop axioo hype 10\nProsesor Intel celeron N4020\nRam 8 gb\nSsd penyimpanan 256 gb \nWindows 11\nDisplay 14 inch"
+            },
+            {
+                "name": "AXIOO HYPE 1",
+                 "price": "",
+                "image": "https://files.catbox.moe/bwgjjc.jpg",
+                "description": "LAPTOP AXIOO\n14 HD\nPROCESSOR INTEL N4020\nRAM 4 SSD 128\nWINDOWS 11 HOME"
+            },
+            {
+                "name": "LENOVO THINKPAD RYZEN",
+                 "price": "",
+                "image": "https://files.catbox.moe/tegvq5.jpg",
+                "description": "Prosesor AMD Ryzen 3 pro 5400\nRam gb\nSsd penyimpanan 256 gb\nWindows 11\nDisplay 13.3 inch"
+            },
+            {
+                "name": "ASUS VIVOBOOK",
+                 "price": "",
+                "image": "",
+                "description": ""
+            },
+            {
+                "name": "",
+                "image": "",
+                "description": ""
+            },
+            {
+                "name": "",
+                "image": "",
+                "description": ""
+            },
+            {
+                "name": "",
+                "image": "",
+                "description": ""
+            }
+        ];
         // Display Products
         const productList = document.getElementById("product-list");
         function displayProducts(products) {
