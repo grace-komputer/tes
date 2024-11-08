@@ -290,6 +290,14 @@
     </footer>
 
     <script>
+        function randomPick(arr) {
+            if (arr.length === 0) {
+                return undefined;
+            }
+            const randomIndex = Math.floor(Math.random() * arr.length);
+            return arr[randomIndex];
+        }
+        const randomNumber = ["6282213305959", "6281375389037", "6281265237379"]
         // Product Data
         const products = [
             {
