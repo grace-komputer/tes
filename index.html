@@ -361,9 +361,8 @@
                     <img src="${product.image}" class="product-image" alt="${product.name}">
                     <div class="product-info">
                         <h3>${product.name}</h3>
-                        <p>${product.description}</p>
                         <p class="price">Rp ${product.price.toLocaleString()}</p>
-                        <a href="#" class="btn-buy" onclick="openModal('${product.name}', '${product.description}', '${product.price}')">Buy Now</a>
+                        <a href="#" class="btn-buy" onclick="openModal('${product.name}', '${product.description.replace("\n", "<br>")}', '${product.price}')">Detail</a>
                     </div>
                 `;
                 productList.appendChild(productCard);
@@ -393,7 +392,7 @@
             const modal = document.getElementById("productModal");
             document.getElementById("modalProductName").innerText = name;
             document.getElementById("modalProductDescription").innerText = description;
-            document.getElementById("modalBuyLink").href = "#";  // Add your actual buying link here
+            document.getElementById("modalBuyLink").href = "";  // Add your actual buying link here
             modal.style.display = "flex";
         }
 
