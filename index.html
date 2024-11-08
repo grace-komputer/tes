@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto" rel="stylesheet">
     <title>Store</title>
     <style>
         /* Global Styles */
@@ -30,8 +30,11 @@
         }
 
         h1 {
+            font-family: 'Roboto', sans-serif; /* Menggunakan font Google untuk logo */
             font-size: 2rem;
             margin: 0;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         /* Search Logo */
@@ -69,6 +72,35 @@
             border-radius: 8px;
         }
 
+        /* New Contact, Email, About Links */
+        .header-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-links ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-links ul li {
+            margin-left: 20px;
+        }
+
+        .header-links ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .header-links ul li a:hover {
+            color: #f0f0f0;
+        }
+
+        /* Product Section */
         .section-title {
             font-size: 2rem;
             margin-bottom: 20px;
@@ -190,7 +222,7 @@
 
     <!-- Header -->
     <header>
-        <h1>Welcome to Our Store</h1>
+        <h1>Store</h1> <!-- Logo with Google Font -->
 
         <!-- Search Box with Logo -->
         <div class="search-box" onclick="toggleSearch()">
@@ -204,6 +236,15 @@
                 <option value="name">Sort by Name</option>
                 <option value="price">Sort by Price</option>
             </select>
+        </div>
+
+        <!-- Contact, Email, About Links -->
+        <div class="header-links">
+            <ul>
+                <li><a href="tel:+123456789">Contact</a></li>
+                <li><a href="mailto:info@store.com">Email</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
         </div>
     </header>
 
@@ -239,8 +280,8 @@
         ];
 
         // Display Products
+        const productList = document.getElementById('product-list');
         function displayProducts(products) {
-            const productList = document.getElementById('product-list');
             productList.innerHTML = '';
             products.forEach(product => {
                 const productDiv = document.createElement('div');
@@ -251,14 +292,36 @@
                         <h3>${product.name}</h3>
                         <p>${product.description}</p>
                         <div class="price">Rp ${product.price.toLocaleString()}</div>
-                        <a href="https://wa.me/6282213305959?text=Saya+tertarik+untuk+membeli+${product.name}" class="btn-buy" target="_blank">Buy Now</a>
+                        <a href="https://wa.me/6282213305959?text=Apakah+masih+ada+${product.name}" class="btn-buy" target="_blank">Buy Now</a>
                     </div>
                 `;
+                productDiv.onclick = function() {
+                    showProductDetail(product);
+                };
                 productList.appendChild(productDiv);
             });
         }
 
-        // Sort Products by Name or Price
+        // Show Product Detail in Modal
+        function showProductDetail(product) {
+            document.getElementById('modalProductName').innerText = product.name;
+            document.getElementById('modalProductDescription').innerText = product.description;
+            document.getElementById('modalBuyLink').href = `https://wa.me/6282213305959?text=Apakah+masih+ada+${product.name}`;
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // Search Functionality
+        function toggleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.classList.toggle('active');
+            searchInput.focus();
+        }
+
+        // Sort Products
         function sortProducts() {
             const sortBy = document.getElementById('sortBy').value;
             const sortedProducts = [...products].sort((a, b) => {
@@ -269,33 +332,6 @@
                 }
             });
             displayProducts(sortedProducts);
-        }
-
-        // Search Products
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
-            displayProducts(filteredProducts);
-        });
-
-        // Toggle Search Input
-        function toggleSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.classList.toggle('active');
-            searchInput.focus();
-        }
-
-        // Show Product Details in Modal
-        function showProductDetail(product) {
-            document.getElementById('modalProductName').innerText = product.name;
-            document.getElementById('modalProductDescription').innerText = product.description;
-            document.getElementById('modalBuyLink').href = `https://wa.me/6282213305959?text=Saya+tertarik+untuk+membeli+${product.name}`;
-            document.getElementById('productModal').style.display = 'flex';
-        }
-
-        // Close Modal
-        function closeModal() {
-            document.getElementById('productModal').style.display = 'none';
         }
 
         // Initialize
