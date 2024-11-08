@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <title>Store</title>
-
     <style>
-        /* Styling dasar */
+        /* Global Styles */
         body {
-            font-family: 'Poppins', Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f7f7f7;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -23,12 +22,9 @@
         header {
             background-color: #4904ca;
             color: white;
-            text-align: center;
             padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
@@ -36,114 +32,88 @@
             margin: 0;
         }
 
-        p {
-            font-size: 1.2rem;
-            margin-top: 10px;
+        .search-box, .sort-dropdown {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box input, .sort-dropdown select {
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
         }
 
         .section-title {
             font-size: 2rem;
             margin-bottom: 20px;
-            color: #f1ecec;
+            text-align: center;
         }
 
-        /* Search Box */
-        .search-box {
-            margin: 20px auto;
-            max-width: 600px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        /* Sorting Dropdown */
-        .sort-dropdown {
-            margin: 20px auto;
-            max-width: 600px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .sort-dropdown select {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        /* Produk Section */
         .product-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
+            gap: 20px;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .product-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
         }
 
         .product-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 8px;
         }
 
-        .product-card h3 {
-            font-size: 1.3rem;
-            margin: 10px 0;
+        .product-info {
+            padding: 20px;
             text-align: center;
-            color: #333;
         }
 
-        .product-card p {
-            font-size: 1rem;
-            color: #666;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .price {
+        .product-info h3 {
             font-size: 1.3rem;
-            font-weight: bold;
-            color: #25D366;
             margin-bottom: 10px;
         }
 
+        .product-info p {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: #25D366;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
         .btn-buy {
-            display: inline-block;
             background-color: #25D366;
             color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
+            padding: 12px;
             text-align: center;
-            width: 100%;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
             transition: background-color 0.3s ease;
         }
 
@@ -151,41 +121,6 @@
             background-color: #128C7E;
         }
 
-        /* Modal Detail Produk */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 30px;
-            max-width: 600px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .modal .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ff4c4c;
-            color: white;
-            font-size: 20px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        /* Footer */
         footer {
             background-color: #333;
             color: white;
@@ -194,6 +129,39 @@
             margin-top: auto;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            max-width: 600px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .modal .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ff4c4c;
+            color: white;
+            font-size: 20px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -201,7 +169,7 @@
     <!-- Header -->
     <header>
         <h1>Welcome to Our Store</h1>
-        <p>Explore the best products and exciting promotions!</p>
+        <p>Find the best products at amazing prices!</p>
     </header>
 
     <!-- Search Box -->
@@ -217,13 +185,13 @@
         </select>
     </div>
 
-    <!-- Produk -->
+    <!-- Products Section -->
     <section>
         <h2 class="section-title">Our Products</h2>
         <div id="product-list" class="product-list"></div>
     </section>
 
-    <!-- Modal Detail Produk -->
+    <!-- Modal for Product Details -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">X</button>
@@ -239,55 +207,36 @@
     </footer>
 
     <script>
-        // Produk data
+        // Product Data
         const products = [
-            { "name": "ACER ASPIRE LITE N100", "description": "SPESIFIKASI : ...", "price": 3500000, "image": "", "category": "Laptop" },
-            { "name": "LENOVO IDEAPAD SLIM 3i", "description": "Lenovo IdeaPad Slim 3i ...", "price": 5500000, "image": "https://files.catbox.moe/6qeyg9.jpg", "category": "Laptop" },
-            { "name": "ADVAN SOULMATE DC", "description": "LAPTOP ADVAND SOULMATE DC RAM 4/SSD 128", "price": 3000000, "image": "https://files.catbox.moe/jvp0y7.jpg", "category": "Laptop" },
-            { "name": "AXIOO HYPE 10", "description": "Laptop axioo hype 10 ...", "price": 2500000, "image": "https://files.catbox.moe/ke15a9.jpg", "category": "Laptop" },
-            { "name": "AXIOO HYPE 1", "description": "LAPTOP AXIOO 14 HD ...", "price": 2800000, "image": "https://files.catbox.moe/bwgjjc.jpg", "category": "Laptop" }
+            { "name": "ACER ASPIRE LITE N100", "description": "Laptop with basic features.", "price": 3500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
+            { "name": "LENOVO IDEAPAD SLIM 3i", "description": "Slim and lightweight laptop.", "price": 5500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
+            { "name": "ADVAN SOULMATE DC", "description": "Laptop with 4GB RAM and 128GB SSD.", "price": 3000000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
+            { "name": "AXIOO HYPE 10", "description": "Affordable and reliable laptop.", "price": 2500000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" },
+            { "name": "AXIOO HYPE 1", "description": "Compact laptop with good performance.", "price": 2800000, "image": "https://via.placeholder.com/300x200", "category": "Laptop" }
         ];
 
-        // Menampilkan Produk
-        const productList = document.getElementById('product-list');
-        function displayProducts(filteredProducts) {
+        // Display Products
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
             productList.innerHTML = '';
-            filteredProducts.forEach(product => {
+            products.forEach(product => {
                 const productDiv = document.createElement('div');
                 productDiv.classList.add('product-card');
                 productDiv.innerHTML = `
-                    <img src="${product.image || 'https://via.placeholder.com/300x200.png'}" alt="${product.name}" class="product-image">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <div class="price">Rp ${product.price.toLocaleString()}</div>
-                    <a href="https://wa.me/6282213305959?text=Apakah+masih+ada+produknya?%0A%0A${product.name}%0A${product.description.replace("<br>", "%0A")}" class="btn-buy" target="_blank">Buy Now</a>
-                    <button class="btn-buy" onclick="showProductDetail('${product.name}')">Details</button>
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="price">Rp ${product.price.toLocaleString()}</div>
+                        <a href="https://wa.me/6282213305959?text=Saya+tertarik+untuk+membeli+${product.name}" class="btn-buy" target="_blank">Buy Now</a>
+                    </div>
                 `;
                 productList.appendChild(productDiv);
             });
         }
 
-        // Show Product Details in Modal
-        function showProductDetail(productName) {
-            const product = products.find(p => p.name === productName);
-            document.getElementById('modalProductName').innerText = product.name;
-            document.getElementById('modalProductDescription').innerText = product.description;
-            document.getElementById('modalBuyLink').href = `https://wa.me/6282213305959?text=Apakah+masih+ada+produknya?%0A%0A${product.name}%0A${product.description.replace("<br>", "%0A")}`;
-            document.getElementById('productModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('productModal').style.display = 'none';
-        }
-
-        // Search Functionality
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
-            displayProducts(filteredProducts);
-        });
-
-        // Sort Products
+        // Sort Products by Name or Price
         function sortProducts() {
             const sortBy = document.getElementById('sortBy').value;
             const sortedProducts = [...products].sort((a, b) => {
@@ -300,7 +249,27 @@
             displayProducts(sortedProducts);
         }
 
-        // Initial Display of Products
+        // Search Products
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+            displayProducts(filteredProducts);
+        });
+
+        // Modal for Product Details
+        function showProductDetail(product) {
+            document.getElementById('modalProductName').innerText = product.name;
+            document.getElementById('modalProductDescription').innerText = product.description;
+            document.getElementById('modalBuyLink').href = `https://wa.me/6282213305959?text=Saya+tertarik+untuk+membeli+${product.name}`;
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // Initialize Page
         displayProducts(products);
     </script>
 
